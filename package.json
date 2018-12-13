@@ -1,0 +1,23 @@
+{
+  "name": "paint_game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "socket.io"
+  ],
+  "dependencies": {
+    "socket.io": "^2.1.1"
+  },
+  "author": "web大作业",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moyuyc/paint_game"
+  },
+  "homepage": "https://github.com/moyuyc/paint_game#readme"
+}
