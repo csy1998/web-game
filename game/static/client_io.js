@@ -7,15 +7,17 @@ var socket = io.connect();
 
 // 消息栏刷新
 socket.on('server msg', function (data) {
-    var ele = document.createElement('p');
-    ele.innerHTML = data;
+    var ele = document.createElement('div');
+    var eleP = document.createElement('p');
+    eleP.innerHTML = data;
+    ele.appendChild(eleP);
     msg.appendChild(ele);
     msg.scrollTop = msg.scrollHeight;
 })
 
 // 弹出登陆框
 socket.on('login', function () {
-    if(prompt)
+    if(prompt) 
         socket.emit('login', prompt('输入你的姓名'));
     else
         socket.emit('login', '手机用户');
