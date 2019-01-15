@@ -9,53 +9,67 @@
     <script>
         document.write('<script defer="defer" src="'+location.href+'socket.io/socket.io.js"><'+'/script>');
     </script>
-    <script defer="defer" src="client_js.js"></script>
-    <script defer="defer" src="client_io.js"></script>
+    <style>
+        main.container {
+            width: 1200px;
+            margin: auto;
+        }
+        .ctl-row.line-width-ctl {
+            justify-content: space-between;
+        }
+        .ctl-row > .line-width-ctl {
+            display: flex;
+            align-items: center;
+        }
+    </style>
 </head>
 <body>
     <main class="container">
-        <h1>「你画我猜」</h1>
+        <h1 style="margin-top: 20px; margin-bottom: 20px;">「你画我猜」</h1>
         <div class="row">
             <div style="float:left; width:100%;">
                 <div style="margin-left:10px; margin-right: 400px;">
+                    <div class="box-sh" style="padding: 0">
+                        <canvas height="600">
+                            Sorry, Your Browser don't support canvas of Html5.
+                        </canvas>
+                    </div>
                     <div class="box-sh">
-                    <canvas height="600">
-                        Sorry, Your Browser don't support canvas of Html5.
-                    </canvas>
-                    <div style="background-color: gainsboro">
-                        <div class="ctl-row" id="colors">
-                            <span class="text-blue fl" style="padding:0 4px 0;">颜色</span>
-                        </div>
-                        <div class="ctl-row">
-                            <span class="text-blue fl" style="padding:0 4px 0;">线宽</span>
-                            <input id="ranger" type="range" style="width: 100px;" value="1" min="1" step="1" max="10"/>
-                            <span>1</span>
-                            <div class="fr" id="btns">
-                                <a class="btn btn-blue btn-active-able" href="javascript:delete canvas.erase;">画笔</a>
-                                <a class="btn btn-blue btn-active-able" href="javascript:canvas.erase=true;">橡皮擦</a>
-                                <a class="btn btn-blue" onclick="socket.emit('clear paths');" href="javascript:;">清空</a>
-                                <a class="btn btn-blue" onclick="this.href=canvas.toDataURL();" download="png.png">下载</a>
+                        <div>
+                            <div class="ctl-row" id="colors"  style="height: 24px;">
+                                <span class="text-blue" style="padding:0 8px 0;">颜色</span>
                             </div>
-                            <div style="clear: both;"></div>
+                            <div class="ctl-row line-width-ctl" style="height: 42px;">
+                                <div class="line-width-ctl">
+                                    <span class="text-blue fl" style="padding:0 8px 0;">线宽</span>
+                                    <input id="ranger" type="range" style="width: 100px;" value="1" min="1" step="1" max="10"/>
+                                    <span>&nbsp;1</span>
+                                </div>
+                                <div class="fr" id="btns">
+                                    <a class="btn btn-blue btn-active-able" href="javascript:delete canvas.erase;">画笔</a>
+                                    <a class="btn btn-blue btn-active-able" href="javascript:canvas.erase=true;">橡皮擦</a>
+                                    <a class="btn btn-blue" onclick="socket.emit('clear paths');" href="javascript:;">清空</a>
+                                    <a class="btn btn-blue" onclick="this.href=canvas.toDataURL();" download="png.png">下载</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    </div>
-                    <main style="margin-top: 20px;">
-                        <div class="row">
-                            <div class="col-2">
+                    <main style="margin-top: 14px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <div style="flex: 1;">
                                 <div class="box-sh">
                                 <h4>上场玩家</h4>
                                 <div id="div-users" style="min-height:50px;max-height: 120px;overflow-y: scroll;">
 
                                 </div>
                                 <p class="fr" style="margin: 5px;">
-                                    <button class="btn btn-blue" id="btn-in" title="上场后，队列第一位将会上场绘画">上场！</button>
+                                    <button class="btn btn-blue" id="btn-in" title="上场后，队列第一位将会上场绘画">上场</button>
                                     <button class="btn btn-blue" id="btn-autoin" title="自动上场">自动上场</button>
                                 </p>
                                 <p style="clear: both"></p>
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div style="flex: 1; margin: 0 14px 0 14px;">
                                 <div class="box-sh">
                                 <h4>信息栏</h4>
                                 <div id="info" style="padding: 10px;overflow: scroll">
@@ -65,7 +79,7 @@
                                 </div>
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div style="flex: 1;">
                                 <div class="box-sh">
                                 <h4>排行榜</h4>
                                 <div class="table-responsive">
@@ -85,15 +99,15 @@
                 </div>
 
             </div>
-            <div class="box-sh" style="margin-left: -380px;float: left;width:370px;">
-                <h3>消息框</h3>
+            <div class="box-sh" style="margin-left: -380px;float: left;width:370px; margin-top: 0;">
+                <h3 style="margin-bottom: 14px;">消息框</h3>
                 <div id="msg">
                 </div>
                 <input type="text" id="input-msg" placeholder="输入消息或者词语，回车键发送"/>
             </div>
         </div>
     </main>
-
-
+    <script async src="client_js.js"></script>
+    <script defer src="client_io.js"></script>
 </body>
 </html>

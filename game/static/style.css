@@ -6,13 +6,10 @@
 }
 body{
     touch-action: none;
+    background-color: #f5f5f5;
 }
 canvas{
     cursor: crosshair;
-}
-h1,h2,h3{
-    text-align: center;
-    margin: 10px 4px 20px;
 }
 h4,h5,h6{
     text-align: center;
@@ -22,8 +19,6 @@ h4,h5,h6{
 .container{
     margin-right: auto;
     margin-left: auto;
-    padding-left: 15px;
-    padding-right: 15px;
 }
 .margin-none{
     margin: 0;
@@ -55,10 +50,6 @@ h4,h5,h6{
 .col-8{
     width: 80%;
 }
-.row{
-    margin-right: -15px;
-    margin-left: -15px;
-}
 .row:before,
 .row:after {
     content: " ";
@@ -85,14 +76,14 @@ h4,h5,h6{
     vertical-align: middle;
 }
 .active{
-    border: 3px solid fuchsia !important;
+    box-sizing: border-box;
+    border: 2px solid fuchsia !important;
 }
 .btn{
     display: inline-block;
     border: none;
     cursor: pointer;
-    padding: 5px;
-    margin: 4px;
+    padding: 6px;
     border-radius: 3px;
 }
 .btn:hover{
@@ -101,6 +92,12 @@ h4,h5,h6{
 .btn-blue{
     background-color: cornflowerblue;
     color: azure;
+}
+
+#input-msg {
+    padding: 8px;
+    border-radius: 2px;
+    box-shadow: none;
 }
 
 .on{
@@ -120,17 +117,25 @@ a{
     margin:0 2px 0;
     cursor: pointer;
 }
-.ctl-row{
-    border: 1px solid darkgreen;
-    background-color: beige;
-    padding-top:5px;
-    padding-bottom: 5px;
+
+.ctl-row {
+    display: flex;
+    align-items: center;
     border-radius: 6px;
-    margin: 2px 0 2px;
+}
+
+.ctl-row:not(:first-child) {
+    margin-top: 8px;
 }
 
 .box-sh{
-    box-shadow: 0px 0px 8px 3px #bbb;
+    padding: 8px;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+    background-color: #fff;
+}
+.box-sh:not(:first-child) {
+    margin-top: 14px;
 }
 
 .text-center{
@@ -139,13 +144,19 @@ a{
 
 #msg{
     overflow-y: scroll;
-    padding: 0 10px 0;
     /*width: 100%;*/
     min-height: 400px;
     max-height: 600px;
 }
 #msg p{
     white-space:nowrap;
+    background-color: #eee;
+    display: inline-block;
+    padding: 8px 14px 8px 14px;
+    border-radius: 6px;
+}
+#msg div {
+    margin-bottom: 8px;
 }
 #info p{
     line-height: 30px;
@@ -155,10 +166,9 @@ a{
 }
 input[type=range]{cursor: pointer;}
 input[type=text]{
-    height: 20px;
+    border: 1px solid #aaa;
+    width: 100%;
     font-size: 16px;
-    margin: 5px;
-    width: 90%;
 }
 button[disabled]{
     opacity: .6;
